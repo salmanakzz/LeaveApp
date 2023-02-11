@@ -14,11 +14,13 @@ export const Dashboard = () => {
   const [date, setDate] = useState(null);
 
   const handleSubmit = (e) => {
-    if (content && date) {
+    const userId = localStorage.getItem("userId");
+    if (content && date && userId) {
       e.preventDefault();
       const data = {
         date: new Date(date.$d),
         content,
+        userId,
       };
       submitApplication(data)
         .then((res) => {

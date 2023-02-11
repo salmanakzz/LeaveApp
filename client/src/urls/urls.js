@@ -3,4 +3,4 @@
 export const signupUrl = "/api/signup"
 export const loginUrl = "/api/login"
 
-export const submitApplicationUrl = '/api/submit-application'
+export const submitApplicationUrl = '/application/api/submit-application'

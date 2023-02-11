@@ -23,25 +23,13 @@ module.exports = {
       try {
         const status = await bcrypt.compare(password, userDetails.password);
         if (status) {
-          resolve({ status: "ok", user: true });
+          resolve({ status: "ok", user: true, userId: userDetails._id });
         } else {
           reject({ status: "error", user: false });
         }
       } catch (error) {
         reject({ status: "error", user: false, error });
       }
-      // bcrypt
-      //   .compare(password, userDetails.password)
-      //   .then((status) => {
-      //     if (status) {
-      //       resolve({ status: "ok", user: true });
-      //     } else {
-      //       reject({ status: "error", user: false });
-      //     }
-      //   })
-      //   .catch((error) => {
-      //     reject({ status: "error", user: false, error });
-      //   });
     });
   },
 };
