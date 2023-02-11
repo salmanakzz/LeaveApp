@@ -11,3 +11,15 @@ body {
     "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
 }
+
+.tox-notifications-container, .tox-statusbar__text-container {
+  display: none !important;
+}
+
+.date-picker-custom > div > div > input {
+    height: 1rem !important;
+}
+
+.date-picker-custom > div > label {
+    font-size: .9rem !important;
+}
