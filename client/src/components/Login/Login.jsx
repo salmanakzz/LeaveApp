@@ -27,9 +27,9 @@ export const Login = () => {
     if (loginData) {
       userLogin(loginData)
         .then((res) => {
-          const { status, user, userId } = res;
+          const { status, user, userKey } = res;
           if (status === "ok" && user) {
-            localStorage.setItem("userId", userId);
+            localStorage.setItem("userKey", JSON.stringify(userKey));
             navigate("/home");
           }
         })

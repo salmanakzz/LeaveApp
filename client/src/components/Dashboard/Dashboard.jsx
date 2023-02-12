@@ -7,23 +7,41 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { Button } from "@mui/material";
+import { useSnackbar } from "notistack";
 import { submitApplication } from "../../api";
 
 export const Dashboard = () => {
   const [content, setContent] = useState(null);
   const [date, setDate] = useState(null);
 
+  const { enqueueSnackbar } = useSnackbar();
+
+  const handleClickVariant = (message, variant) => {
+    enqueueSnackbar(message, {
+      variant,
+      anchorOrigin: {
+        vertical: "top",
+        horizontal: "right",
+      },
+    });
+  };
+
   const handleSubmit = (e) => {
-    const userId = localStorage.getItem("userId");
-    if (content && date && userId) {
+    const userKey = JSON.parse(localStorage.getItem("userKey"));
+    if (content && date && userKey._id) {
       e.preventDefault();
       const data = {
         date: new Date(date.$d),
         content,
-        userId,
+        userId: userKey._id,
+        email: userKey.email,
       };
+      handleClickVariant("Application Sended Successfully!", "success");
+
       submitApplication(data)
         .then((res) => {
+          setDate(null);
+          setContent("");
           console.log(res);
         })
         .catch((err) => {

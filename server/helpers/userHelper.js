@@ -22,8 +22,12 @@ module.exports = {
       const userDetails = await userModel.findOne({ email });
       try {
         const status = await bcrypt.compare(password, userDetails.password);
+        const userKey = {
+          _id: userDetails._id,
+          email: userDetails.email,
+        };
         if (status) {
-          resolve({ status: "ok", user: true, userId: userDetails._id });
+          resolve({ status: "ok", user: true, userKey });
         } else {
           reject({ status: "error", user: false });
         }

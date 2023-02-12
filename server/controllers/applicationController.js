@@ -3,12 +3,14 @@
 const applicationHelper = require("../helpers/applicationHelper");
 
 const submitApplication = async (req, res) => {
-  const { userId, content, date } = req.body;
+  const { userId, content, date, email } = req.body;
+ 
   try {
     const response = await applicationHelper.submitUserApplication(
       userId,
       content,
-      date
+      date,
+      email
     );
     res.json(response);
   } catch (error) {
