@@ -8,13 +8,15 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { registerUser } from "../../api";
 
 const theme = createTheme();
 
 export const Signup = () => {
+  const navigate = useNavigate();
+  
   const {
     register,
     handleSubmit,
@@ -26,6 +28,10 @@ export const Signup = () => {
       registerUser(data)
         .then((res) => {
           console.log(res);
+          const { status, userRegistered } = res;
+          if (status === "ok" && userRegistered) {
+            navigate("/");
+          }
         })
         .catch((err) => {
           console.log(err);

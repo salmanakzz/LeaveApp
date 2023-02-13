@@ -7,6 +7,7 @@ const PORT = process.env.PORT;
 
 // import routes files
 const userRouter = require("./routes/user");
+const adminRouter = require("./routes/admin")
 const applicationRouter = require("./routes/application");
 
 const { urlencoded } = require("express");
@@ -32,6 +33,7 @@ db.connect((err) => {
 
 //use the imported routes
 app.use("/", userRouter);
+app.use("/admin", adminRouter);
 app.use("/application", applicationRouter);
 
 //port listening

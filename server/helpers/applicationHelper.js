@@ -19,8 +19,8 @@ module.exports = {
       var mailOptions = {
         from: `"Student"<${email}>`,
         to: process.env.SEND_EMAIL,
-        subject: `Leave Application : ${new Date(date).toLocaleDateString()}`,
-        html: content,
+        subject: `Leave Application : from ${email}`,
+        html: `<b>Leave Date : ${new Date(date).toLocaleDateString()}</b><br/>${content}`,
       };
 
       transporter.sendMail(mailOptions, function (error, info) {

@@ -2,3 +2,4 @@
 export { registerUser } from "./resgisterUser";
 export { userLogin } from "./userLogin";
 export { submitApplication } from "./submitApplication";
+export { fetchApplications } from "./fetchApplications";
