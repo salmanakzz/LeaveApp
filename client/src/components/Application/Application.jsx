@@ -15,9 +15,8 @@ export const Application = ({ app }) => {
           <b>Email: {email}</b>
         </h1>
         <h2>Leave Date : {new Date(leaveDate).toLocaleDateString()}</h2>
-        <h2>Message:{parse(content)}</h2>
-
-        <div id="content"></div>
+        <h2>Message:</h2>
+        {parse(content)}
       </Paper>
     </Grid>
   );

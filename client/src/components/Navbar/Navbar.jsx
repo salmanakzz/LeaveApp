@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const navigation = [
   { name: "Home", href: "/home" },
@@ -7,6 +7,12 @@ const navigation = [
 ];
 
 export const Navbar = () => {
+  const navigate = useNavigate()
+
+  const handleLogout = () =>{
+    localStorage.removeItem("userKey");
+    navigate('/')
+  }
   return (
     <div className="px-6 pt-6 lg:px-8">
       <nav className="flex items-center justify-between" aria-label="Global">
@@ -20,7 +26,7 @@ export const Navbar = () => {
           ))}
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <span className="text-sm font-semibold leading-6 text-gray-900">
+          <span onClick={handleLogout} className="text-sm font-semibold leading-6 text-gray-900 cursor-pointer">
             Log out <span aria-hidden="true">&rarr;</span>
           </span>
         </div>

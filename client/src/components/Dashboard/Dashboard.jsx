@@ -28,7 +28,7 @@ export const Dashboard = () => {
 
   const handleSubmit = (e) => {
     const userKey = JSON.parse(localStorage.getItem("userKey"));
-    if (content && date && userKey._id) {
+    if (content && date && userKey?._id) {
       e.preventDefault();
       const data = {
         date: new Date(date.$d),

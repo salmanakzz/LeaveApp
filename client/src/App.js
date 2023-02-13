@@ -1,7 +1,13 @@
 import "./App.css";
-import { DashboardPage, HomePage, LoginPage, SignupPage } from "./pages";
+import {
+  DashboardPage,
+  HomePage,
+  LoginPage,
+  SignupPage,
+  AdminDashPage,
+} from "./pages";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { AdminDash } from "./components";
+import { PrivateRoute } from "./routes/PrivateRoute";
 
 function App() {
   return (
@@ -9,9 +15,11 @@ function App() {
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
-        <Route path="/home" element={<HomePage />} />
-        <Route path="/dashboard" element={<DashboardPage />} />
-        <Route path="/admin" element={<AdminDash />} />
+        <Route element={<PrivateRoute />}>
+          <Route path="/home" element={<HomePage />} />
+          <Route path="/dashboard" element={<DashboardPage />} />
+        </Route>
+        <Route path="/admin" element={<AdminDashPage />} />
       </Routes>
     </Router>
   );

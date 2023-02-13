@@ -17,6 +17,9 @@ module.exports = {
               as: "user",
             },
           },
+          {
+            $sort: { createdAt: -1 },
+          },
         ]);
         resolve({ status: "ok", fetched: true, data: applications });
       } catch (error) {
