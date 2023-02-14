@@ -3,6 +3,7 @@ import { Background } from "../Background/Background";
 import { Navbar } from "../Navbar/Navbar";
 
 export const Home = () => {
+  const userKey = JSON.parse(localStorage.getItem("userKey"));
   return (
     <div className="isolate bg-white">
       <Background />
@@ -11,7 +12,7 @@ export const Home = () => {
         <div className="mx-auto py-32 sm:py-48 lg:py-56">
           <div className="text-center">
             <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-              Welcome
+              Welcome {userKey?.name}
             </h1>
           </div>
         </div>

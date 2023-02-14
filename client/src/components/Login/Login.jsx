@@ -11,11 +11,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useForm } from "react-hook-form";
 import { userLogin } from "../../api";
+import { Alert } from "@mui/material";
 
 const theme = createTheme();
 
 export const Login = () => {
   const navigate = useNavigate();
+
+  const [invalid, setInvalid] = React.useState(false);
 
   const {
     register,
@@ -28,10 +31,13 @@ export const Login = () => {
       userLogin(loginData)
         .then((res) => {
           const { status, user, userKey } = res;
+          console.log(res);
           if (status === "ok" && user) {
             localStorage.setItem("userKey", JSON.stringify(userKey));
             navigate("/home");
+            return;
           }
+          setInvalid(true);
         })
         .catch((err) => {
           console.log(err);
@@ -131,6 +137,11 @@ export const Login = () => {
               />
               {errors?.password?.type === "required" && (
                 <p className="validate-error">This field is required</p>
+              )}
+              {invalid && (
+                <Alert sx={{ mt: 1 }} severity="error">
+                  Invalid email or password!
+                </Alert>
               )}
               <Button
                 type="submit"

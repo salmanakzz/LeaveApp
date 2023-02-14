@@ -25,6 +25,7 @@ module.exports = {
         const userKey = {
           _id: userDetails._id,
           email: userDetails.email,
+          name: userDetails.name,
         };
         if (status) {
           resolve({ status: "ok", user: true, userKey });
